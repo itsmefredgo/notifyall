@@ -1,5 +1,7 @@
 # CSCI 4145 Term Project: NotifyAll
 
+Frederick Go | B00873074
+
 ## Project Summary:
 
 This web application aims to provide a solution for the need to send notifications, either via text message or email, to a group of people. This could be for various scenarios, such as class cancellations by an instructor or the introduction of a new member in a study group. The application aims to fulfill these requirements in a user-friendly manner.
