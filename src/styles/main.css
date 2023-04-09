@@ -142,3 +142,245 @@
   padding-bottom: 2em;
   text-align: center;
 }
+
+/* Log in page */
+.signupform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  margin: 0 auto;
+  min-height: 30vh;
+  background-color: rgb(223, 194, 238);
+}
+
+.signupform h1,
+.loginform h1 {
+  margin-bottom: 1vh;
+}
+
+.loginform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  margin: 0 auto;
+  min-height: 30vh;
+  background-color: rgb(146, 166, 202);
+}
+
+.loginform-error {
+  color: red;
+}
+
+.loginform input,
+.signupform input {
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  width: 20vw;
+}
+
+.loginform button,
+.signupform button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  display: block;
+  margin: 0 auto;
+}
+
+.goback {
+  margin-top: 1vh;
+}
+
+.signupbutton {
+  margin-top: 1vh;
+}
+
+/* Main once logged in */
+.loggedin-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 30vh;
+  background-color: rgb(65, 154, 124);
+}
+
+.loggedin-main h1 {
+  margin-bottom: 3vh;
+}
+
+.loggedin-main button {
+  font-size: 1.5em;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 2vh;
+}
+
+.to-signout button {
+  padding: 0.5rem;
+  font-size: 1.5em;
+  background-color: rgb(58, 10, 161);
+  border-radius: 1rem;
+  border: none;
+  color: white;
+}
+header {
+  position: relative;
+}
+
+header .main-background-image {
+  position: relative;
+}
+
+header .main-background-image a {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+}
+
+.to-signout {
+  z-index: 2;
+}
+
+.logout-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 30vh;
+  background-color: rgb(234, 162, 162);
+}
+
+.logout-content a {
+  align-self: flex-start;
+}
+
+.logout-content button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.view-lists {
+  min-height: 30vh;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  background-color: rgb(178, 214, 244);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.view-lists a {
+  align-self: flex-start;
+}
+
+.view-lists h1 {
+  margin-bottom: 20px;
+  font-size: 3rem;
+}
+
+.view-lists button {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.view-lists ul {
+  list-style: none;
+}
+
+.gobackfromlogin {
+  position: absolute;
+  top: 0rem;
+}
+
+.creategroupform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  margin: 0 auto;
+  min-height: 30vh;
+  background-color: rgb(164, 118, 118);
+}
+
+.creategroupform h1 {
+  margin-bottom: 20px;
+}
+
+.loginform-error {
+  color: blue;
+}
+
+.creategroupform input {
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  width: 10vw;
+}
+
+.creategroupform button {
+  padding: 10px 10px;
+  border-radius: 5px;
+  margin-bottom: 2vh;
+  width: 11vw;
+  border: none;
+}
+
+.groups-list h3 {
+  margin-bottom: 2vh;
+}
+
+.link-groups-creategroup {
+  text-decoration: none;
+  margin: auto;
+}
+
+.link-groups-creategroup button {
+  margin-top: 3rem;
+  background-color: rgb(176, 234, 197);
+}
+
+.members-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.members-list button {
+  align-self: flex-start;
+}
+
+.members-list h1 {
+  margin-bottom: 20px;
+}
+
+.members-list h3 {
+  margin-bottom: 20px;
+  color: red;
+}
+
+.members-list div {
+  margin-bottom: 10px;
+  border: rgb(83, 10, 10) solid 1px;
+  border-radius: 1rem;
+  padding: 1rem;
+}
