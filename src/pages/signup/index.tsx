@@ -1,5 +1,5 @@
 // Imports
-import Header from "../../assets/includes/header";
+import Header from "./../smallheader";
 import Footer from "../../assets/includes/footer";
 import SignupForm from "./signupform";
 

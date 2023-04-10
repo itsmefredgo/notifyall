@@ -53,27 +53,31 @@ export default function Signup() {
 
   return (
     <div className="loginform">
-      <h1>Sign up</h1>
+      <h1 className="loginform-title">Sign up</h1>
       <div className="loginform-error">{errorMessage}</div>
-      <form onSubmit={onSubmit}>
+      <form className="loginform-form" onSubmit={onSubmit}>
         <input
+          className="loginform-input"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
           placeholder="Username"
         />
         <input
+          className="loginform-input"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           placeholder="Password"
           type="password"
         />
-        <button type="submit">Sign Up</button>
+        <button className="loginform-button" type="submit">
+          Sign Up
+        </button>
       </form>
       <Link className="signupbutton" href="/login">
-        <button>Already have an accont?</button>
+        <button className="loginform-button">Already have an accont?</button>
       </Link>
       <Link className="goback" href="/">
-        <button>Back to main page</button>
+        <button className="loginform-button">Back to main page</button>
       </Link>
     </div>
   );

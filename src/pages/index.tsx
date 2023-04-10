@@ -1,19 +1,15 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
 import styles from "<redux>/styles/Home.module.css";
+import { useEffect, useState } from "react";
+import Head from "next/head";
 import Link from "next/link";
 
-import { useEffect, useState } from "react";
-import HeadPart from "./../assets/includes/header";
+import Header from "./../assets/includes/header";
+import Footer from "./../assets/includes/footer";
 import MainTop from "./main-top";
 import MainBot from "./main-bot";
-import Footer from "./../assets/includes/footer";
-
-import main_background_image from "<redux>/assets/images/bg-image.png";
-import mapped_houses from "<redux>/assets/images/mapped-houses.png";
-
-const inter = Inter({ subsets: ["latin"] });
+import MainMid from "./main-mid";
+import MainLog from "./main-log";
+import SmallHeader from "./smallheader";
 
 export default function Home() {
   const [username, setUsername] = useState("");
@@ -34,45 +30,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <HeadPart></HeadPart>
-
         {!username && (
           <>
+            <Header></Header>
             <MainTop></MainTop>
-            <div className="main-middle">
-              <div className="main-middle-heading">Time to notify!</div>
-              <div className="main-middle-boxes">
-                <div className="main-middle-left">
-                  <div>Don&apos;t have an account?</div>
-                  <div>Register for free today here!</div>
-                  <Link href="/signup">
-                    <button>Sign Up</button>
-                  </Link>
-                </div>
-                <div className="main-middle-right">
-                  <div>Already have an account?</div>
-                  <div>Log in with your existing account here!</div>
-                  <Link href="/login">
-                    <button>Log In</button>
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <MainMid></MainMid>
             <MainBot></MainBot>
           </>
         )}
         {username && (
-          <div className="loggedin-main">
-            <h1>Welcome, {username}!</h1>
-            <Link href="/groups">
-              <button>View Your Groups Here</button>
-            </Link>
-            <Link href="/creategroup">
-              <button>Create a new group here</button>
-            </Link>
-          </div>
+          <>
+            <SmallHeader></SmallHeader>
+            <MainLog></MainLog>
+          </>
         )}
-
         <Footer></Footer>
       </main>
     </>

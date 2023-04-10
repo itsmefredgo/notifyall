@@ -1,3 +1,7 @@
+/* * {
+  border: red solid 1px;
+}
+
 .main-background-image {
   width: 100%;
   height: 60vh;
@@ -153,7 +157,7 @@
 }
 
 /* Log in page */
-.signupform {
+/* .signupform {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -209,10 +213,10 @@
 
 .signupbutton {
   margin-top: 1vh;
-}
+} */
 
 /* Main once logged in */
-.loggedin-main {
+/* .loggedin-main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -392,4 +396,413 @@ header .main-background-image {
   border: rgb(83, 10, 10) solid 1px;
   border-radius: 1rem;
   padding: 1rem;
+} */
+*/
+/* --------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Header */
+.container-header {
+  height: 100vh;
+  background-image: url("../assets//images/bg-image.png");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 10rem;
+  color: white;
+  text-shadow: 2px 2px 4px black;
+}
+
+.links {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+}
+
+.link {
+  margin-left: 20px;
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+}
+
+/* Before Login - Top */
+.container-top {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-top {
+  font-size: 4rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 2rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.text {
+  font-size: 1.5rem;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.mapped-houses {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Before Login - Middle */
+.container-mid {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(176, 196, 160);
+}
+
+.title-mid {
+  font-size: 4rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.buttons-mid {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+}
+
+.button-mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-mid {
+  font-size: 1.5rem;
+  color: #312828;
+  margin-bottom: 10px;
+}
+
+.link-mid {
+  font-size: 2rem;
+  color: white;
+  background-color: #333;
+  padding: 20px 40px;
+  text-decoration: none;
+}
+
+/* Before Login - Bottom */
+.create-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20vw;
+  padding-right: 20vw;
+  text-align: center;
+}
+
+.create-text {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.create-contact {
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 20px;
+}
+
+.create-name {
+  font-weight: bold;
+}
+
+.create-email {
+  color: blue;
+  text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+  background-color: rgb(40, 37, 37);
+  color: wheat;
+  text-align: center;
+  height: 4vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+}
+
+/* Samll Header */
+.header-small {
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  background-image: url("../assets//images/bg-image.png");
+  background-size: cover;
+  background-position: center center;
+}
+
+.button-small-header {
+  font-size: 2rem;
+  color: white;
+  background-color: transparent;
+  border: none;
+  padding: 20px 40px;
+  cursor: pointer;
+}
+
+.link-small-header {
+  font-size: 2rem;
+  color: white;
+  text-decoration: none;
+  padding: 20px 40px;
+}
+
+/* Sign up form */
+.loginform {
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginform-title {
+  font-size: 4rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.loginform-error {
+  font-size: 1.5rem;
+  color: red;
+  margin-bottom: 10px;
+}
+
+.loginform-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginform-input {
+  font-size: 2rem;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.loginform-button {
+  font-size: 2rem;
+  padding: 10px;
+}
+
+.signupbutton {
+  margin-top: 20px;
+}
+
+.goback {
+  margin-top: 10px;
+}
+
+/* Logged in main page */
+.loggedin-main {
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(213, 245, 255);
+}
+
+.loggedin-title {
+  font-size: 4rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.loggedin-button {
+  font-size: 2rem;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.loggedin-button:hover {
+  background-color: #333;
+  color: white;
+}
+
+/* Create group form */
+.create-form {
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(225, 251, 184);
+}
+
+.create-title {
+  font-size: 4rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.create-error {
+  font-size: 1.5rem;
+  color: red;
+  margin-bottom: 10px;
+}
+
+.create-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-input {
+  font-size: 2rem;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.create-button {
+  font-size: 2rem;
+  padding: 10px;
+}
+
+.create-button:hover {
+  background-color: #333;
+  color: white;
+}
+
+/* Groups list */
+.groups-ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.groups-list {
+  background-color: lightblue;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 10px;
+}
+.groups-h1 {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  color: white;
+}
+.groups-h3 {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: white;
+}
+.groups-li {
+  margin: 5px;
+}
+.groups-button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+.link-groups-creategroup {
+  display: block;
+  margin-top: 10px;
+}
+.link-groups-button {
+  background-color: green;
+  border: none;
+  color: white;
+}
+
+.members-list {
+  background-color: lightgreen;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 10px;
+}
+
+.listofmembers-h1 {
+  margin-top: 5rem;
+}
+.members-button {
+  background-color: rgb(255, 198, 198);
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+.members-button:hover {
+  background-color: red;
+}
+.members-h1 {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  color: white;
+}
+.members-h3 {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: white;
+}
+.members-form {
+  display: flex;
+  flex-direction: column;
+}
+.members-input {
+  margin: 5px;
+}
+.member-div {
+  border: 1px solid gray;
+  margin: 5px;
+}
+.member-button {
+  background-color: rgb(59, 22, 22);
+  border: none;
+  color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.member-button:hover {
+  background-color: red;
+}
+.messagecontent {
+  height: 10rem;
+}
+
+.view-lists {
+  min-height: 75vh;
+}
+.deletegroupbutton {
+  margin-top: 2rem;
+  background-color: rgb(156, 191, 237);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.deletegroupbutton:hover {
+  background-color: rgb(95, 48, 48);
 }

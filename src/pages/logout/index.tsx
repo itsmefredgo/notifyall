@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import styles from "<redux>/styles/Home.module.css";
-import Header from "../../assets/includes/header";
+import Header from "../smallheader";
 import Footer from "../../assets/includes/footer";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -16,16 +16,29 @@ export default function Home() {
   }
 
   return (
+    // <div className="Logout-page">
+    //   <Header></Header>
+    //   <div className="logout-content">
+    //     <div>Are you sure you want to logout?</div>
+    //     <button onClick={signout}>Yes, log me out!</button>
+    //     <div>
+    //       <Link href="/">
+    //         <button>No! Back to main page!</button>
+    //       </Link>
+    //     </div>
+    //   </div>
+    //   <Footer></Footer>
+    // </div>
     <div className="Logout-page">
       <Header></Header>
-      <div className="logout-content">
-        <div>Are you sure you want to logout?</div>
-        <button onClick={signout}>Yes, log me out!</button>
-        <div>
-          <Link href="/">
-            <button>No! Back to main page!</button>
-          </Link>
-        </div>
+      <div className="loggedin-main">
+        <h1 className="loggedin-title">Log out?</h1>
+        <button onClick={signout} className="loggedin-button">
+          Yes, log me out!
+        </button>
+        <Link href="/">
+          <button className="loggedin-button">No, go back!</button>
+        </Link>
       </div>
       <Footer></Footer>
     </div>

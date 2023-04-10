@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import Header from "../../assets/includes/header";
+import Header from "./../smallheader";
 import Footer from "../../assets/includes/footer";
-import CreateGroupForm from "./createGroupForm"
+import CreateGroupForm from "./createGroupForm";
 
 const CreateGroup = () => {
   const [groups, setGroups] = useState<string[]>([]);

@@ -63,21 +63,24 @@ export default function CreateNewGroup() {
   };
 
   return (
-    <div className="creategroupform">
-      <h1>Create a New Group</h1>
+    <div className="create-form">
+      <h1 className="create-title">Create a New Group</h1>
       {errorMessage != "" && (
-        <div className="loginform-error">*{errorMessage}*</div>
+        <div className="create-error">*{errorMessage}*</div>
       )}
-      <form onSubmit={onSubmit}>
+      <form className="create-form" onSubmit={onSubmit}>
         <input
+          className="create-input"
           value={newgroupname}
           onChange={(event) => setnNewgroupname(event.target.value)}
           placeholder="Group Name"
         />
-        <button type="submit">Create!</button>
+        <button className="create-button" type="submit">
+          Create!
+        </button>
       </form>
       <Link className="gobackfromcreatelist" href="/">
-        <button>Back to main page</button>
+        <button className="create-button">Back to main page</button>
       </Link>
     </div>
   );

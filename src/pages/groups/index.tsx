@@ -1,10 +1,9 @@
 // Imports
 import { useState, useEffect, FormEvent } from "react";
 import Link from "next/link";
-import Header from "../../assets/includes/header";
+import Header from "./../smallheader";
 import Footer from "../../assets/includes/footer";
 import { useRouter } from "next/router";
-import { title } from "process";
 
 // Member object
 interface Member {
@@ -239,50 +238,60 @@ const ViewLists = () => {
   }
 
   return (
-    <div>
+    <div className="container-viewgroups">
       <Header></Header>
       <div className="view-lists">
-        <Link className="gobackfromlogin" href="/">
-          Back to main page
-        </Link>
-
-        <ul>
+        <ul className="groups-ul">
           {selectedGroup == "" && groups && (
             <div className="groups-list">
-              <h1>View Groups</h1>
+              <h1 className="groups-h1">View Groups</h1>
               {groups.length > 0 && <h3>Select a group to edit.</h3>}
               {groups.length == 0 && (
-                <h3>Looks like you have created no group.</h3>
+                <h3 className="groups-h3">
+                  Looks like you have created no group.
+                </h3>
               )}
 
               {groups.map((group, index) => (
-                <li key={index}>
-                  <button onClick={() => selectgroup(group)}>
+                <li className="groups-li" key={index}>
+                  <button
+                    onClick={() => selectgroup(group)}
+                    className="groups-button"
+                  >
                     Edit or View: {group}
                   </button>
                 </li>
               ))}
               <Link href="/creategroup" className="link-groups-creategroup">
-                <button>or create a new group here. </button>
+                <button className="link-groups-button">
+                  or create a new group here.{" "}
+                </button>
               </Link>
             </div>
           )}
         </ul>
         {selectedGroup != "" && (
           <div className="members-list">
-            <button onClick={() => resetSelectedGroup()}>Back</button>
-            <h1>{selectedGroup}</h1>
+            <button
+              onClick={() => resetSelectedGroup()}
+              className="members-button"
+            >
+              Back
+            </button>
+            <h1 className="members-h1">{selectedGroup}</h1>
             {(addmemberstatus || addmemberstatus != "") && (
-              <h3>{addmemberstatus}</h3>
+              <h3 className="members-h3">{addmemberstatus}</h3>
             )}
 
-            <form onSubmit={sendMessage}>
+            <form onSubmit={sendMessage} className="members-form">
               <input
+                className="members-input"
                 value={titleToSend}
                 onChange={(event) => setTitleToSend(event.target.value)}
                 placeholder="Title"
               />
               <input
+                className="members-input messagecontent"
                 value={messageToSend}
                 onChange={(event) => setMessageToSend(event.target.value)}
                 placeholder="Message"
@@ -290,10 +299,11 @@ const ViewLists = () => {
               <button type="submit">Send!</button>
             </form>
 
+            <h1 className="listofmembers-h1">List of Members</h1>
             {members.length == 0 && <>Group is empty!</>}
             {members.length > 0 &&
               members.map((member, index) => (
-                <div key={member.contact}>
+                <div key={member.contact} className="member-div">
                   Name: {member.membername}
                   <br />
                   Contact: {member.contact}
@@ -305,19 +315,25 @@ const ViewLists = () => {
               ))}
             <form onSubmit={addmember}>
               <input
+                className="members-input"
                 value={newmembername}
                 onChange={(event) => setNewmembername(event.target.value)}
                 placeholder="Name"
               />
               <input
+                className="members-input"
                 value={newmembercontact}
                 onChange={(event) => setNewmembercontact(event.target.value)}
                 placeholder="Contact (e-mail)"
               />
-              <button type="submit">Add!</button>
+              <button className="member-button" type="submit">
+                Add!
+              </button>
             </form>
 
-            <button onClick={() => removegroup()}>Delete this group!</button>
+            <button onClick={() => removegroup()} className="deletegroupbutton">
+              Delete this group!
+            </button>
           </div>
         )}
       </div>
