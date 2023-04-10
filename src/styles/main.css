@@ -1,10 +1,13 @@
 .main-background-image {
-  /* width: 100%;
-  height: auto;
-  filter: blur(0px);
-  transition-duration: 2s; */
   width: 100%;
   height: 60vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.main-background-image-small {
+  width: 100%;
+  height: 20vh;
   overflow: hidden;
   position: relative;
 }
@@ -44,6 +47,7 @@
 .main-top > * {
   text-align: center;
 }
+
 .main-top-heading {
   font-size: 3rem;
 }
@@ -103,10 +107,15 @@
 }
 .main-middle-boxes > * > *:nth-child(3) {
   color: black;
-  font-size: 1.25rem;
+  font-size: 4rem;
   margin-top: 2em;
   padding: 0.5em;
   border-radius: 0.5em;
+}
+.main-middle-boxes > * > *:nth-child(3) > * {
+  font-size: 0.25em;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
 }
 
 .main-bottom {
@@ -241,7 +250,7 @@ header .main-background-image {
   position: relative;
 }
 
-header .main-background-image a {
+.to-signout {
   position: absolute;
   top: 3rem;
   right: 3rem;

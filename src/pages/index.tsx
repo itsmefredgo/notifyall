@@ -64,9 +64,6 @@ export default function Home() {
         {username && (
           <div className="loggedin-main">
             <h1>Welcome, {username}!</h1>
-            <Link href="/notify">
-              <button>Notify!</button>
-            </Link>
             <Link href="/groups">
               <button>View Your Groups Here</button>
             </Link>

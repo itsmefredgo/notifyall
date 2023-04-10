@@ -1,49 +1,53 @@
+// Imports
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
-import crypto from "crypto";
 import Link from "next/link";
 
 export default function Signup() {
+  // New Username and Password
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const hashPassword = (password: string) => {
-    const hash = crypto.createHash("sha256");
-    hash.update(password);
-    return hash.digest("hex");
-  };
-
+  // Ob submit, calls the sign up API
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    // If either blanks are empty, warn the user.
+    if (!username || !password) {
+      setErrorMessage("Please enter username and password. ");
+    } else {
+      try {
+        // Call the SIGNUP API gateway.
+        const response = await fetch(
+          `https://6ffo8aqo89.execute-api.us-east-1.amazonaws.com/notifyall/userauthentication`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              call: "SIGNUP",
+              username,
+              password,
+            }),
+          }
+        );
 
-    try {
-      const response = await fetch(
-        `https://zhwuzz7e9e.execute-api.us-east-1.amazonaws.com/test/signup`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username,
-            password,
-          }),
-        }
-      );
-
-      response.json().then((message) => {
-        // This is set the state of error message if exists.
-        const messageField = JSON.parse(message["body"])["message"];
-        setErrorMessage(messageField);
-        if (messageField == "Successfully signed up") {
-          router.push("/login");
-        }
-      });
-    } catch (error) {
-      console.error(error);
+        // Response from the LOGIN API.
+        response.json().then((message) => {
+          // Report the result from the SIGNUP lambda function.
+          const messageField = JSON.parse(message["body"])["message"];
+          // If successfully signed up, move to log in page.
+          if (messageField == "Successfully signed up") {
+            alert("Successfully signed up! Time to Notify!");
+            router.push("/login");
+          }
+          setErrorMessage(messageField);
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 

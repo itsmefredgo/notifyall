@@ -8,29 +8,23 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <>
-      <div className="main-top">
-        <div className="main-top-heading">Welcome to Notify Sphere!</div>
-        <div className="main-top-about-us">What is Notify Sphere?</div>
-        <div className="main-top-description">
-          <div>Hello!</div>
-          <div>
-            Notify Sphere is a service where you can manage lists of contacts
-          </div>
-          <div>and send notifications / messages</div>
-          <div>to all members of groups you desire!</div>
-          <Image
-            src={mapped_houses}
-            alt="main background image"
-            placeholder="blur"
-            className="mapped-houses"
-          ></Image>
-          <div>
-            We also translate messages to different languages you desire
-          </div>
-          <div>brought to you by AWS Translate Service!</div>
+    <div className="main-top">
+      <div className="main-top-heading">Welcome to Notify All!</div>
+      <div className="main-top-about-us">What is Notify All?</div>
+      <div className="main-top-description">
+        <div>Hello!</div>
+        <div>
+          Notify All is a service where you can manage lists of contacts
         </div>
+        <div>and send notifications / messages</div>
+        <div>to all members of groups you desire!</div>
+        <Image
+          src={mapped_houses}
+          alt="main background image"
+          placeholder="blur"
+          className="mapped-houses"
+        ></Image>
       </div>
-    </>
+    </div>
   );
 }

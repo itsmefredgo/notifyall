@@ -1,24 +1,30 @@
+// Imports
 import { useState, useEffect, FormEvent } from "react";
 import Link from "next/link";
 import Header from "../../assets/includes/header";
 import Footer from "../../assets/includes/footer";
-import { group } from "console";
 import { useRouter } from "next/router";
+import { title } from "process";
 
-import { translateMessage } from "../../assets/translate";
-
+// Member object
 interface Member {
   membername: string;
   contact: string;
-  language: string;
 }
 
-function convertToList(members: Record<string, Member>): Member[] {
+/**
+ * This function creates an array of Member objects from list of member fields.
+ * @param members List of members not in an array of members.
+ * @returns an array of Member objects.
+ */
+function convertToMembersArray(members: Record<string, Member>): Member[] {
   const memberList: Member[] = [];
+  // Push each Member object to the array.
   for (const [key, value] of Object.entries(members)) {
-    const { membername, contact, language } = value;
-    memberList.push({ membername, contact, language });
+    const { membername, contact } = value;
+    memberList.push({ membername, contact });
   }
+  // Remove the first empty row.
   memberList.reverse();
   memberList.pop();
   memberList.reverse();
@@ -26,26 +32,34 @@ function convertToList(members: Record<string, Member>): Member[] {
 }
 
 const ViewLists = () => {
+  // Router
   const router = useRouter();
 
   const [groups, setGroups] = useState<string[]>([]);
-  const [username, setUsername] = useState<string>("");
   const [selectedGroup, setSelectedGroup] = useState<string>("");
+
+  const [username, setUsername] = useState<string>("");
   const [members, setMembers] = useState<Member[]>([]);
 
   const [newmembername, setNewmembername] = useState<string>("");
   const [newmembercontact, setNewmembercontact] = useState<string>("");
-  const [newmemberlanguage, setNewmemberlanguage] = useState<string>("English");
 
-  const [addmemberstatus, setAddmemberstatus] = useState<string>();
+  const [addmemberstatus, setAddmemberstatus] = useState<string>("");
 
-  // ================================================================================================
+  const [messageToSend, setMessageToSend] = useState<string>("");
+  const [titleToSend, setTitleToSend] = useState<string>("");
+
+  // When a state changes, refresh the groups list.
   useEffect(() => {
+    // Calls API to retrieve a list of groups for a user.
     const fetchGroups = async () => {
       const res = await fetch(
         "https://zhwuzz7e9e.execute-api.us-east-1.amazonaws.com/test/retrievelists",
         {
           method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({ username }),
         }
       );
@@ -56,107 +70,171 @@ const ViewLists = () => {
     };
 
     const storedUsername = sessionStorage.getItem("username");
+    // Retrieve a fresh list of groups.
     if (storedUsername) {
       setUsername(storedUsername);
       fetchGroups();
     }
   }, [username]);
-  // ================================================================================================
+
+  // Choose to view a specific group; hence, fetch members in the group.
   function selectgroup(selectedgroupname: string) {
     setSelectedGroup(selectedgroupname);
     fetchContact(selectedgroupname);
   }
-  // ================================================================================================
+
+  // This function Retrieves a list of members in a group.
   const fetchContact = async (selectedGroup: string) => {
     const res = await fetch(
       "https://zhwuzz7e9e.execute-api.us-east-1.amazonaws.com/test/retrievemembers",
       {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ username, groupname: selectedGroup }),
       }
     );
     const data = await res.json();
 
+    // Update array of members.
     if (data["body"]) {
-      // console.log(JSON.parse(data["body"]));
-      // if (data["body"]["message"] != null) {
-      setMembers(convertToList(JSON.parse(data["body"])));
-
-      // }
+      setMembers(convertToMembersArray(JSON.parse(data["body"])));
     }
   };
-  // ================================================================================================
+
+  // This function calls API to add a member to a group.
   const addmember = async (event: FormEvent) => {
     event.preventDefault();
 
+    // Call the ADDMEMBER API gateway.
     const res = await fetch(
-      "https://zhwuzz7e9e.execute-api.us-east-1.amazonaws.com/test/addmember",
+      "https://6ffo8aqo89.execute-api.us-east-1.amazonaws.com/notifyall/useraction",
       {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
+          action: "ADDMEMBER",
           username,
           groupname: selectedGroup,
           membername: newmembername,
           contact: newmembercontact,
-          language: newmemberlanguage,
         }),
       }
     );
+
+    // Result received from the API.
     const data = await res.json();
     fetchContact(selectedGroup);
-    console.log(data);
     setAddmemberstatus(JSON.parse(data["body"])["message"]);
 
+    // Empty the form.
     if (JSON.parse(data["body"])["message"] == "Member added successfully") {
+      alert(
+        "New member added successfully! Make sure to let the members know that they have been added, and must confirm their e-mail before receiving any messages!"
+      );
       setNewmembercontact("");
-      setNewmemberlanguage("English");
       setNewmembername("");
     }
-
-    const translatedMessage = await translateMessage("Hello world!", "fr"); // Translate "Hello world!" to French
-
-    console.log(translatedMessage); // Output: "Bonjour le monde !"
   };
-  // ================================================================================================
+
+  // This function removes a member from a group.
   const removemember = async (membercontacttoremove: string) => {
+    // Calls the REMOVEMEMBER API
     const res = await fetch(
-      "https://zhwuzz7e9e.execute-api.us-east-1.amazonaws.com/test/removemember",
+      "https://6ffo8aqo89.execute-api.us-east-1.amazonaws.com/notifyall/useraction",
       {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
+          action: "REMOVEMEMBER",
           username,
           groupname: selectedGroup,
           contact: membercontacttoremove,
         }),
       }
     );
+
+    // Result received from the API.
     const data = await res.json();
+    // Refresh the memebers of the group.
     fetchContact(selectedGroup);
+    // Update the status.
     setAddmemberstatus(JSON.parse(data["body"])["message"]);
   };
-  // ================================================================================================
+
+  // This function removes a group.
   const removegroup = async () => {
-    const res = await fetch(
-      "https://zhwuzz7e9e.execute-api.us-east-1.amazonaws.com/test/removegroup",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          username,
-          groupname: selectedGroup,
-        }),
-      }
-    );
-    const data = await res.json();
-    resetSelectedGroup();
-    router.reload();
+    // Call the REMOVEGROUP API gateway.
+    try {
+      const res = await fetch(
+        "https://6ffo8aqo89.execute-api.us-east-1.amazonaws.com/notifyall/useraction",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            action: "REMOVEGROUP",
+            username,
+            groupname: selectedGroup,
+          }),
+        }
+      );
+
+      // Result received from the API.
+      const data = await res.json();
+      // Back to list of groups.
+      resetSelectedGroup();
+      router.reload();
+    } catch (error) {
+      console.log(error);
+    }
   };
-  // ================================================================================================
+
+  // This function sends a message to a group.
+  const sendMessage = async (event: FormEvent) => {
+    event.preventDefault();
+
+    // Call the SENDMESSAGE API gateway.
+    try {
+      const res = await fetch(
+        "https://6ffo8aqo89.execute-api.us-east-1.amazonaws.com/notifyall/useraction",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            action: "SENDMESSAGE",
+            username,
+            groupname: selectedGroup,
+            title: titleToSend,
+            message: messageToSend,
+          }),
+        }
+      );
+
+      // Result received from the API.
+      const data = await res.json();
+      // Back to list of groups.
+      resetSelectedGroup();
+      router.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Reset forms and environment.
   function resetSelectedGroup() {
     setSelectedGroup("");
     setMembers([]);
     setAddmemberstatus("");
     setNewmembercontact("");
-    setNewmemberlanguage("English");
     setNewmembername("");
   }
 
@@ -197,6 +275,21 @@ const ViewLists = () => {
             {(addmemberstatus || addmemberstatus != "") && (
               <h3>{addmemberstatus}</h3>
             )}
+
+            <form onSubmit={sendMessage}>
+              <input
+                value={titleToSend}
+                onChange={(event) => setTitleToSend(event.target.value)}
+                placeholder="Title"
+              />
+              <input
+                value={messageToSend}
+                onChange={(event) => setMessageToSend(event.target.value)}
+                placeholder="Message"
+              />
+              <button type="submit">Send!</button>
+            </form>
+
             {members.length == 0 && <>Group is empty!</>}
             {members.length > 0 &&
               members.map((member, index) => (
@@ -204,8 +297,6 @@ const ViewLists = () => {
                   Name: {member.membername}
                   <br />
                   Contact: {member.contact}
-                  <br />
-                  Language: {member.language}
                   <br />
                   <button onClick={() => removemember(member.contact)}>
                     remove
@@ -223,13 +314,9 @@ const ViewLists = () => {
                 onChange={(event) => setNewmembercontact(event.target.value)}
                 placeholder="Contact (e-mail)"
               />
-              <input
-                value={newmemberlanguage}
-                onChange={(event) => setNewmemberlanguage(event.target.value)}
-                placeholder="Language"
-              />
               <button type="submit">Add!</button>
             </form>
+
             <button onClick={() => removegroup()}>Delete this group!</button>
           </div>
         )}

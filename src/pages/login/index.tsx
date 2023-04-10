@@ -1,13 +1,9 @@
-import { Inter } from "next/font/google";
-import styles from "<redux>/styles/Home.module.css";
+// Imports
 import Header from "../../assets/includes/header";
 import Footer from "../../assets/includes/footer";
-import LoginForm from "./loginform"
-
-const inter = Inter({ subsets: ["latin"] });
+import LoginForm from "./loginform";
 
 export default function Home() {
-
   return (
     <>
       <Header></Header>

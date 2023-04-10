@@ -1,52 +1,58 @@
+// Imports
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
-import crypto from "crypto";
-import Link from "next/link";
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function CreateNewGroup() {
+  // New Group name and username
   const [newgroupname, setnNewgroupname] = useState("");
+  const [username, setUsername] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const hashPassword = (password: string) => {
-    const hash = crypto.createHash("sha256");
-    hash.update(password);
-    return hash.digest("hex");
-  };
-
-  const [username, setUsername] = useState("");
   useEffect(() => {
+    // Retrieving username from session stored.
     const sessionUsername = sessionStorage.getItem("username");
     if (sessionUsername) {
       setUsername(sessionUsername);
     }
   });
+
+  // Ob submit, calls the Create Group API
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
+    // If new group name is empty, warn the user.
     if (!username || !newgroupname) {
-      setErrorMessage("Please enter a newgroupname");
+      setErrorMessage("Please enter a newgroupname. ");
     } else {
       try {
+        // Call the SIGNUP API gateway.
         const response = await fetch(
-          `https://zhwuzz7e9e.execute-api.us-east-1.amazonaws.com/test/createlist`,
+          `https://6ffo8aqo89.execute-api.us-east-1.amazonaws.com/notifyall/useraction`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
+              action: "CREATEGROUP",
               username,
               groupname: newgroupname,
             }),
           }
         );
 
+        // Response from the CREATEGROUP API.
         response.json().then((message) => {
-          // This is set the state of error message if exists.
+          // Report the result from the CREATEGROUP lambda function.
           const messageField = JSON.parse(message["body"])["message"];
+          // If sucessfully created a new group, inform the user and reroute the groups.
+          if (messageField == "Successfully created a group. ") {
+            alert("Oohoo! New group created!");
+            router.push("/groups");
+          }
           setErrorMessage(messageField);
           console.log(messageField);
         });

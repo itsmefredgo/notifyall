@@ -1,49 +1,48 @@
+// Imports
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/router";
-import crypto from "crypto";
 import Link from "next/link";
 
 export default function Signup() {
+  // Username and Password
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const hashPassword = (password: string) => {
-    const hash = crypto.createHash("sha256");
-    hash.update(password);
-    return hash.digest("hex");
-  };
-
+  // On submit, calls log in API
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
-
-    event.preventDefault();
+    // If either blanks are empty, warn the user.
     if (!username || !password) {
-      setErrorMessage("Please enter a username and password");
+      setErrorMessage("Please enter username and password. ");
     } else {
       try {
+        // Call the LOGIN API gateway.
         const response = await fetch(
-          `https://zhwuzz7e9e.execute-api.us-east-1.amazonaws.com/test/login`,
+          `https://6ffo8aqo89.execute-api.us-east-1.amazonaws.com/notifyall/userauthentication`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
+              call: "LOGIN",
               username,
               password,
             }),
           }
         );
 
+        // Response from the LOGIN API.
         response.json().then((message) => {
-          // This is set the state of error message if exists.
+          // Report the result from the LOGIN lambda function.
           const messageField = JSON.parse(message["body"])["message"];
           setErrorMessage(messageField);
-          if (messageField == "Successfully logged in") {
+          // If successfully logged in, set session and route to main.
+          if (messageField == "Successfully logged in. ") {
             sessionStorage.setItem("username", username);
+            alert("Log in successful! Time to Notify!");
             router.push("/");
           }
         });

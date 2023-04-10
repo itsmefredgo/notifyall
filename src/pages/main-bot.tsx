@@ -14,28 +14,23 @@ export default function Home() {
         <div className="main-bottom-servicetypes-content">
           <div>
             Create lists of different people! They can have either an email
-            address or a phone number. Also, assign a language!
+            address.
           </div>
           <div>
             When you want to send a message to a group of people, simple select
             the group you want to notify, write up your message, and simply
             send!
           </div>
-          <div>
-            If optional language is set for specific users, your message will
-            automatically translated to the desired language!
-          </div>
         </div>
         <div className="main-bottom-contactus">Contact Us:</div>
         <div className="main-bottom-contactus-content">
           <div>
             Hi there, my name is Frederick Go, the one and only developer of
-            Notify Sphere.
+            Notify All.
           </div>
           <div>You can contact me via the following methods: </div>
           <ul>
-            <li>- Email: hello@notifysphere.com</li>
-            <li>- Cell: 123-456-7890</li>
+            <li>- Email: dn282145@dal.ca</li>
           </ul>
         </div>
       </div>
