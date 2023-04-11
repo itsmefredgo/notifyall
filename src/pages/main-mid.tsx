@@ -7,7 +7,7 @@ export default function Home() {
       <div className="buttons-mid">
         <div className="button-mid">
           <p className="text-mid">
-            Don't have an account? Register for free today here!
+            Don&apos;t have an account? Register for free today here!
           </p>
           <Link href="/signup" className="link-mid">
             Sign Up
