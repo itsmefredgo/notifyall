@@ -1,4 +1,5 @@
 // Imports
+import Link from "next/link";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -18,20 +19,19 @@ export default function Home() {
       <div className="header-small">
         {!username && (
           <>
-            <a className="button-small-header" href="/">
+            <Link className="button-small-header" href="/">
               NotifyAll
-            </a>
+            </Link>
           </>
-          // </div>
         )}
         {username && (
           <>
-            <a className="button-small-header" href="/">
+            <Link className="button-small-header" href="/">
               NotifyAll
-            </a>
-            <a href="/logout" className="link-small-header">
+            </Link>
+            <Link href="/logout" className="link-small-header">
               Sign Out
-            </a>
+            </Link>
           </>
         )}
       </div>

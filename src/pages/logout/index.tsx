@@ -16,19 +16,6 @@ export default function Home() {
   }
 
   return (
-    // <div className="Logout-page">
-    //   <Header></Header>
-    //   <div className="logout-content">
-    //     <div>Are you sure you want to logout?</div>
-    //     <button onClick={signout}>Yes, log me out!</button>
-    //     <div>
-    //       <Link href="/">
-    //         <button>No! Back to main page!</button>
-    //       </Link>
-    //     </div>
-    //   </div>
-    //   <Footer></Footer>
-    // </div>
     <div className="Logout-page">
       <Header></Header>
       <div className="loggedin-main">

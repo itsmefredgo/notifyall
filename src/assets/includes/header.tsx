@@ -1,5 +1,6 @@
 // Imports
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
   const [username, setUsername] = useState("");
@@ -15,12 +16,12 @@ export default function Home() {
       {!username && (
         <div className="container-header">
           <div className="links">
-            <a href="/login" className="link">
+            <Link href="/login" className="link">
               Login
-            </a>
-            <a href="/signup" className="link">
+            </Link>
+            <Link href="/signup" className="link">
               Signup
-            </a>
+            </Link>
           </div>
           <h1 className="title">NotifyAll</h1>
         </div>
@@ -28,12 +29,12 @@ export default function Home() {
       {username && (
         <div className="container-header-login">
           <div className="links">
-            <a href="/login" className="link">
+            <Link href="/login" className="link">
               Login
-            </a>
-            <a href="/signup" className="link">
+            </Link>
+            <Link href="/signup" className="link">
               Signup
-            </a>
+            </Link>
           </div>
           <h1 className="title-login">NotifyAll</h1>
         </div>
