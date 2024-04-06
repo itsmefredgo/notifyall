@@ -10,9 +10,8 @@ export default function Home() {
   return (
     <>
       <div className="footer">
-        © 2023 Frederick Donghyeon Go. All Rights Reserved.
-        <br />* Note that Notify Sphere was built as an academic project of CSCI
-        4145 course.
+        © 2023 Frederick Donghyeon Go. MIT LICENSED. All rights reserved.
+        <br />* Note that Notify All is an academic project.{" "}
       </div>
     </>
   );

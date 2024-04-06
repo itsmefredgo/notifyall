@@ -1,6 +1,4 @@
-# CSCI 4145 Term Project: NotifyAll
-
-Frederick Go | B00873074
+# NotifyAll
 
 ## Project Title:
 
@@ -19,3 +17,9 @@ Explanation:
 ## Explaination:
 
 To use the application, the user must sign up and create groups with members. Each member's contact information, an email, must be provided. The user can then send out information by filling out a form that includes a title and some message content. Then selected group will then be broadcasted the message through the AWS SNS service.
+
+### Note
+
+MIT LICENSE: See /LICENSE file for the full description. 
+
+
